@@ -13,15 +13,14 @@ app = Flask(__name__);
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    id = request.args.get('id')
+    idYt = request.args.get('id')
     lang = request.args.get('x')
-    transcricao = YouTubeTranscriptApi.get_transcript('A8zyhKRebus', languages=['pt'])
+    transcricao = YouTubeTranscriptApi.get_transcript(idYt, languages=[lang])
     result = json.dumps(
         {
             "id": str(uuid.uuid4()),
             "Data": time.strftime("%m/%d/%Y", time.localtime()) ,
-            "Numbers": random.sample(range(10),3),
-            "videoURL": id,
+            "videoURL": idYt,
             "idioma": lang,
             "transcription": transcricao
         }, ensure_ascii=False)
