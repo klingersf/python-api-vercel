@@ -24,16 +24,17 @@ class handler(BaseHTTPRequestHandler):
       self._send_cors_headers()
       self.end_headers()
 
-  def do_GET(self):
-    idVideo = "A8zyhKRebus"
-    lang = "pt"
+  def do_GET(self, **kwargs):
+    idVideo = kwargs.get('id')
+    lang = kwargs.get('lang')
     transcricao = YouTubeTranscriptApi.get_transcript('A8zyhKRebus', languages=['pt'])
     result = json.dumps(
         {
             "id": str(uuid.uuid4()),
             "Data": time.strftime("%m/%d/%Y", time.localtime()) ,
             "Numbers": random.sample(range(10),3),
-            "Probalilidade": 0,
+            "videoURL": idVideo,
+            "idioma": lang,
             "transcrição": transcricao
         }, ensure_ascii=False)
     self.send_response(200)
