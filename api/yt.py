@@ -25,7 +25,7 @@ class handler(BaseHTTPRequestHandler):
       self.end_headers()
 
   def do_GET(self):
-    idVideo = request.GET["id"]
+    idVideo = "a"
     lang = pt
     transcricao = YouTubeTranscriptApi.get_transcript('A8zyhKRebus', languages=['pt'])
     result = json.dumps(
