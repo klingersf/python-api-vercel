@@ -15,4 +15,4 @@ app = Flask(__name__)
 def catch_all(path):
     id = request.args.get('id')
     x = request.args.get('x')
-    return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (idx), mimetype="text/html")
+    return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (id), mimetype="text/html")
