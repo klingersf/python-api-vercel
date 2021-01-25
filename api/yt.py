@@ -24,9 +24,9 @@ class handler(BaseHTTPRequestHandler):
       self._send_cors_headers()
       self.end_headers()
 
-  def do_GET(self, **kwargs):
-    idVideo = request.GET.get('id', '')
-    lang = request.GET.get('lang', '')
+  def do_GET(self):
+    idVideo = request.GET["id"]
+    lang = pt
     transcricao = YouTubeTranscriptApi.get_transcript('A8zyhKRebus', languages=['pt'])
     result = json.dumps(
         {
