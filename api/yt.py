@@ -34,8 +34,6 @@ class handler(BaseHTTPRequestHandler):
             "Data": time.strftime("%m/%d/%Y", time.localtime()) ,
             "Numbers": random.sample(range(10),3),
             "Probalilidade": 0,
-            "videoID" = idVideo,
-            "idioma" = lang,
             "transcrição": transcricao
         }, ensure_ascii=False)
     self.send_response(200)
