@@ -1,1 +1,2 @@
 cowpy==1.0.3
+youtube-transcript-api==0.3.1
