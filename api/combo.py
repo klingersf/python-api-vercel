@@ -10,28 +10,11 @@ import time
 from flask import Flask, Response, request
 app = Flask(__name__);
 
-
-""" The HTTP request handler """
-class handler(BaseHTTPRequestHandler):
-
-  def _send_cors_headers(self):
-    """ Sets headers required for CORS """
-    self.send_header("Access-Control-Allow-Origin", "*")
-    self.send_header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
-    self.send_header("Access-Control-Allow-Headers", "x-api-key,Content-Type")
-
-  def send_dict_response(self, d):
-    """ Sends a dictionary (JSON) back to the client """
-    self.wfile.write(bytes(dumps(d), "utf8"))
-
-  def do_OPTIONS(self):
-      self.send_response(200)
-      self._send_cors_headers()
-      self.end_headers()
-
-  def do_GET(self):
-    idVideo = request.args.get('id')
-    lang = request.args.get('lang')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    id = request.args.get('id')
+    x = request.args.get('x')
     transcricao = YouTubeTranscriptApi.get_transcript('A8zyhKRebus', languages=['pt'])
     result = json.dumps(
         {
@@ -42,8 +25,4 @@ class handler(BaseHTTPRequestHandler):
             "idioma": lang,
             "transcription": transcricao
         }, ensure_ascii=False)
-    self.send_response(200)
-    self.send_header('Content-type', 'application/json')
-    self.end_headers()
-    self.wfile.write(result.encode(encoding='utf_8'))
-    return
+    return result
