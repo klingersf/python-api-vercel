@@ -8,9 +8,7 @@ import time
 
 
 from flask import Flask, Response, request
-app = Flask(__name__)
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+app = Flask(__name__);
 
 
 """ The HTTP request handler """
