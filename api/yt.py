@@ -35,7 +35,7 @@ class handler(BaseHTTPRequestHandler):
             "Numbers": random.sample(range(10),3),
             "videoURL": idVideo,
             "idioma": lang,
-            "transcrição": transcricao
+            "transcription": transcricao
         }, ensure_ascii=False)
     self.send_response(200)
     self.send_header('Content-type', 'application/json')
